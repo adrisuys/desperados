@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity"
+    android:orientation="vertical"
+    android:background="#FF9B50">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/bg"
+        android:layout_marginBottom="50dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:text="DESPERADOS OF DICE TOWN "
+            android:fontFamily="@font/western"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/top_bg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/farm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOU : "
+                android:textColor="#000"
+                android:fontFamily="@font/western"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:text="GANG"
+                android:textColor="#000"
+                android:fontFamily="@font/western"
+                android:id="@+id/your_gang"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_bg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/grand_canyon">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="COMPUTER : "
+                android:fontFamily="@font/western"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:textColor="#000"
+                android:text="GANG"
+                android:id="@+id/computer_gang"
+                android:fontFamily="@font/western"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAY"
+            android:textSize="40dp"
+            android:fontFamily="@font/western"
+            android:onClick="onPlayClicked"
+            android:background="@null"
+            android:textColor="#5B2B18"
+            style="?android:attr/borderlessButtonStyle"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="12">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FF9B50"
+        android:padding="10dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textSize="20dp"
+                android:id="@+id/bossA_name"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:id="@+id/boss_A_pic"
+                android:tag="BOSS"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:textSize="20dp"
+                android:id="@+id/bossA_jail"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textSize="20dp"
+                android:id="@+id/ladyA_name"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:id="@+id/lady_A_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="LADY"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:textSize="20dp"
+                android:id="@+id/ladyA_jail"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/badA_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:id="@+id/bad_A_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="BAD"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:textSize="20dp"
+                android:id="@+id/badA_jail"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FF9B50"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/uglyA_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:id="@+id/ugly_A_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="UGLY"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/uglyA_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/brainA_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:id="@+id/brain_A_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="BRAIN"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/brainA_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="0$"
+            android:textSize="30dp"
+            android:fontFamily="@font/western"
+            android:textColor="#fff"
+            android:id="@+id/gangAmoney"
+            android:background="@drawable/money_chips_red"
+            style="?android:attr/borderlessButtonStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="horizontal"
+        android:weightSum="12"
+        android:background="#166E1F">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/dice1"
+                    android:background="#41210D"
+                    android:onClick="onClickDice"
+                    android:tag="0"/>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/dice2"
+                    android:background="#41210D"
+                    android:onClick="onClickDice"
+                    android:tag="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/dice3"
+                    android:background="#41210D"
+                    android:onClick="onClickDice"
+                    android:tag="2">
+                </ImageView>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/dice4"
+                    android:background="#41210D"
+                    android:onClick="onClickDice"
+                    android:tag="3"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ROLL"
+                    android:onClick="rollDices"
+                    android:background="@null"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/western"/>
+
+                <Button
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STOP"
+                    android:onClick="stopRollingDices"
+                    android:background="@null"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/western"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/wood">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50dp"
+                android:text="BANK"
+                android:textColor="#000"
+                android:fontFamily="@font/western"/>
+
+            <Button
+                android:layout_gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:text="100$"
+                android:textSize="40dp"
+                android:fontFamily="@font/western"
+                android:id="@+id/bank"
+                android:background="@drawable/money_chips_yellow"
+                style="?android:attr/borderlessButtonStyle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FF9B50"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/uglyB_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="UGLY"
+                android:id="@+id/ugly_B_pic"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/uglyB_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textSize="20dp"
+                android:id="@+id/brainB_name"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/brain_B_pic"
+                android:tag="BRAIN"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/brainB_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="50$"
+            android:textSize="30dp"
+            android:textColor="#fff"
+            android:id="@+id/gangBmoney"
+            android:background="@drawable/money_chips_blue"
+            style="?android:attr/borderlessButtonStyle"
+            android:fontFamily="@font/western"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FF9B50"
+        android:padding="10dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/bossB_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/boss_B_pic"
+                android:tag="BOSS"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/bossB_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textSize="20dp"
+                android:id="@+id/ladyB_name"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="LADY"
+                android:id="@+id/lady_B_pic"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/ladyB_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:id="@+id/badB_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:tag="BAD"
+                android:id="@+id/bad_B_pic"
+                android:onClick="onClickCharacter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREEDOM"
+                android:id="@+id/badB_jail"
+                android:textSize="20dp"
+                android:fontFamily="@font/western"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
