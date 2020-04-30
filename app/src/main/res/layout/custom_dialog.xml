@@ -4,7 +4,7 @@
     android:padding="10dp"
     android:orientation="vertical"
     android:layout_weight="12"
-    android:background="@drawable/wood_horizontal">
+    android:background="@drawable/dialog_box_bg">
 
     <LinearLayout
         android:layout_width="match_parent"

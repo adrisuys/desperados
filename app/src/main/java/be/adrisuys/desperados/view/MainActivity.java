@@ -1,7 +1,6 @@
 package be.adrisuys.desperados.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -92,13 +91,13 @@ public class MainActivity extends AppCompatActivity {
     private void setBg(LinearLayout linearLayout, String name) {
         switch (name){
             case "Oleson":
-                linearLayout.setBackgroundResource(R.drawable.farm);
+                linearLayout.setBackgroundResource(R.drawable.main_farm);
                 break;
             case "Los Libertadores":
-                linearLayout.setBackgroundResource(R.drawable.desert);
+                linearLayout.setBackgroundResource(R.drawable.main_desert);
                 break;
             case "Red Damnation":
-                linearLayout.setBackgroundResource(R.drawable.grand_canyon);
+                linearLayout.setBackgroundResource(R.drawable.main_grand_canyon);
                 break;
         }
     }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -79,10 +78,10 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     @Override
     public void updateUI() {
         boolean[] states = presenter.getDiceState();
-        dice1UI.setBackgroundResource(states[0] ? R.drawable.locked_dice : R.drawable.unlocked_dice);
-        dice2UI.setBackgroundResource(states[1] ? R.drawable.locked_dice : R.drawable.unlocked_dice);
-        dice3UI.setBackgroundResource(states[2] ? R.drawable.locked_dice : R.drawable.unlocked_dice);
-        dice4UI.setBackgroundResource(states[3] ? R.drawable.locked_dice : R.drawable.unlocked_dice);
+        dice1UI.setBackgroundResource(states[0] ? R.drawable.dice_locked : R.drawable.dice_unlocked);
+        dice2UI.setBackgroundResource(states[1] ? R.drawable.dice_locked : R.drawable.dice_unlocked);
+        dice3UI.setBackgroundResource(states[2] ? R.drawable.dice_locked : R.drawable.dice_unlocked);
+        dice4UI.setBackgroundResource(states[3] ? R.drawable.dice_locked : R.drawable.dice_unlocked);
         updateJailtime();
         String[] values = presenter.getDiceValues();
         setFaces(dice1UI, values[0]);
@@ -224,25 +223,25 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     private void setImagesForFirstGang() {
         switch(presenter.getGangName(0).trim()){
             case "Oleson":
-                bossAimg.setBackgroundResource(R.drawable.oleson_boss);
-                ladyAimg.setBackgroundResource(R.drawable.oleson_lady);
-                badAimg.setBackgroundResource(R.drawable.oleson_bad);
-                uglyAimg.setBackgroundResource(R.drawable.oleson_ugly);
-                brainAimg.setBackgroundResource(R.drawable.oleson_brain);
+                bossAimg.setBackgroundResource(R.drawable.character_oleson_boss);
+                ladyAimg.setBackgroundResource(R.drawable.character_oleson_lady);
+                badAimg.setBackgroundResource(R.drawable.character_oleson_bad);
+                uglyAimg.setBackgroundResource(R.drawable.character_oleson_ugly);
+                brainAimg.setBackgroundResource(R.drawable.character_oleson_brain);
                 break;
             case "Los Libertadores":
-                bossAimg.setBackgroundResource(R.drawable.los_libertadores_boss);
-                ladyAimg.setBackgroundResource(R.drawable.los_libertadores_lady);
-                badAimg.setBackgroundResource(R.drawable.los_libertadores_bad);
-                uglyAimg.setBackgroundResource(R.drawable.los_libertadores_ugly);
-                brainAimg.setBackgroundResource(R.drawable.los_libertadores_brain);
+                bossAimg.setBackgroundResource(R.drawable.character_los_libertadores_boss);
+                ladyAimg.setBackgroundResource(R.drawable.character_los_libertadores_lady);
+                badAimg.setBackgroundResource(R.drawable.character_los_libertadores_bad);
+                uglyAimg.setBackgroundResource(R.drawable.character_los_libertadores_ugly);
+                brainAimg.setBackgroundResource(R.drawable.character_los_libertadores_brain);
                 break;
             case "Red Damnation":
-                bossAimg.setBackgroundResource(R.drawable.red_damnation_boss);
-                ladyAimg.setBackgroundResource(R.drawable.red_damnation_lady);
-                badAimg.setBackgroundResource(R.drawable.red_damnation_bad);
-                uglyAimg.setBackgroundResource(R.drawable.red_damnation_ugly);
-                brainAimg.setBackgroundResource(R.drawable.red_damnation_brain);
+                bossAimg.setBackgroundResource(R.drawable.character_red_damnation_boss);
+                ladyAimg.setBackgroundResource(R.drawable.character_red_damnation_lady);
+                badAimg.setBackgroundResource(R.drawable.character_red_damnation_bad);
+                uglyAimg.setBackgroundResource(R.drawable.character_red_damnation_ugly);
+                brainAimg.setBackgroundResource(R.drawable.character_red_damnation_brain);
                 break;
         }
     }
@@ -250,25 +249,25 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     private void setImagesForSecondGang() {
         switch(presenter.getGangName(1)){
             case "Oleson":
-                bossBimg.setBackgroundResource(R.drawable.oleson_boss);
-                ladyBimg.setBackgroundResource(R.drawable.oleson_lady);
-                badBimg.setBackgroundResource(R.drawable.oleson_bad);
-                uglyBimg.setBackgroundResource(R.drawable.oleson_ugly);
-                brainBimg.setBackgroundResource(R.drawable.oleson_brain);
+                bossBimg.setBackgroundResource(R.drawable.character_oleson_boss);
+                ladyBimg.setBackgroundResource(R.drawable.character_oleson_lady);
+                badBimg.setBackgroundResource(R.drawable.character_oleson_bad);
+                uglyBimg.setBackgroundResource(R.drawable.character_oleson_ugly);
+                brainBimg.setBackgroundResource(R.drawable.character_oleson_brain);
                 break;
             case "Los Libertadores":
-                bossBimg.setBackgroundResource(R.drawable.los_libertadores_boss);
-                ladyBimg.setBackgroundResource(R.drawable.los_libertadores_lady);
-                badBimg.setBackgroundResource(R.drawable.los_libertadores_bad);
-                uglyBimg.setBackgroundResource(R.drawable.los_libertadores_ugly);
-                brainBimg.setBackgroundResource(R.drawable.los_libertadores_brain);
+                bossBimg.setBackgroundResource(R.drawable.character_los_libertadores_boss);
+                ladyBimg.setBackgroundResource(R.drawable.character_los_libertadores_lady);
+                badBimg.setBackgroundResource(R.drawable.character_los_libertadores_bad);
+                uglyBimg.setBackgroundResource(R.drawable.character_los_libertadores_ugly);
+                brainBimg.setBackgroundResource(R.drawable.character_los_libertadores_brain);
                 break;
             case "Red Damnation":
-                bossBimg.setBackgroundResource(R.drawable.red_damnation_boss);
-                ladyBimg.setBackgroundResource(R.drawable.red_damnation_lady);
-                badBimg.setBackgroundResource(R.drawable.red_damnation_bad);
-                uglyBimg.setBackgroundResource(R.drawable.red_damnation_ugly);
-                brainBimg.setBackgroundResource(R.drawable.red_damnation_brain);
+                bossBimg.setBackgroundResource(R.drawable.character_red_damnation_boss);
+                ladyBimg.setBackgroundResource(R.drawable.character_red_damnation_lady);
+                badBimg.setBackgroundResource(R.drawable.character_red_damnation_bad);
+                uglyBimg.setBackgroundResource(R.drawable.character_red_damnation_ugly);
+                brainBimg.setBackgroundResource(R.drawable.character_red_damnation_brain);
                 break;
         }
     }

@@ -28,7 +28,7 @@
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/farm">
+            android:background="@drawable/main_farm">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:layout_marginBottom="50dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/grand_canyon">
+            android:background="@drawable/main_grand_canyon">
 
             <TextView
                 android:layout_width="wrap_content"

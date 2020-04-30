@@ -11,7 +11,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:background="@drawable/poker_table"
+            android:background="@drawable/playground_poker_table"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -27,7 +27,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/unlocked_dice"
+                    android:background="@drawable/dice_unlocked"
                     android:onClick="onClickDice"
                     android:tag="0" />
 
@@ -35,7 +35,7 @@
                     android:id="@+id/dice2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/unlocked_dice"
+                    android:background="@drawable/dice_unlocked"
                     android:onClick="onClickDice"
                     android:tag="1" />
 
@@ -51,7 +51,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/unlocked_dice"
+                    android:background="@drawable/dice_unlocked"
                     android:onClick="onClickDice"
                     android:tag="2"></ImageView>
 
@@ -59,7 +59,7 @@
                     android:id="@+id/dice4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/unlocked_dice"
+                    android:background="@drawable/dice_unlocked"
                     android:onClick="onClickDice"
                     android:tag="3" />
 
@@ -102,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:background="@drawable/wood"
+            android:background="@drawable/playground_wood"
             android:gravity="center"
             android:orientation="vertical">
 
