@@ -83,4 +83,16 @@ public class Presenter {
     public void displayWin(String currentGangName) {
         view.displayWin(currentGangName);
     }
+
+    public void displayAiActions(String aiActions) {
+        view.displayAiActions(aiActions);
+    }
+
+    public void highlight(int[] indexes) {
+        view.highlight(indexes);
+    }
+
+    public void resetHighlight() {
+        view.resetHighlight();
+    }
 }

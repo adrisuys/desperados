@@ -1,5 +1,6 @@
 package be.adrisuys.desperados.models;
 
+import android.content.Intent;
 import android.os.Handler;
 
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class Game implements Serializable {
     private int nbActionsForRound;
     private int rollCount;
     private GameState gameState;
+    private String aiActions;
 
     public Game(){
         dice_faces = new String[]{"*", "2", "3", "4", "5", "6"};
@@ -40,6 +42,7 @@ public class Game implements Serializable {
         nbActionsForRound = 0;
         rollCount = 1;
         gameState = GameState.DICE_ROLL;
+        aiActions = "";
     }
 
     public void setPresenter(Presenter presenter) {
@@ -119,6 +122,7 @@ public class Game implements Serializable {
                 presenter.updateUI();
                 rollCount++;
                 if (rollCount > 3){
+                    showHighlight();
                     setGameState(GameState.CHOOSE_ACTION);
                 }
             }
@@ -166,6 +170,16 @@ public class Game implements Serializable {
 
     // private methods
 
+    private void showHighlight() {
+        List<Bandit> actives = gangs.get(currentGangIndex).getActiveBandit(dices);
+        int[] indexes = new int[actives.size()];
+        for (int i = 0; i < actives.size(); i++){
+            int index = Math.abs(actives.get(i).getAbility().getValue() - 6);
+            indexes[i] = index;
+        }
+        presenter.highlight(indexes);
+    }
+
     private String getCurrentGangName(){
         return gangs.get(currentGangIndex).getName();
     }
@@ -212,31 +226,31 @@ public class Game implements Serializable {
     }
 
     private Gang createRedDamnationGang(){
-        Bandit boss = new Bandit("Boss", Ability.BOSS);
-        Bandit lady = new Bandit("Lady", Ability.LADY);
-        Bandit bad = new Bandit("Bad", Ability.BAD);
-        Bandit ugly = new Bandit("Ugly", Ability.UGLY);
-        Bandit brain = new Bandit("Brain", Ability.BRAIN);
+        Bandit boss = new Bandit("Colt", Ability.BOSS);
+        Bandit lady = new Bandit("Ruby", Ability.LADY);
+        Bandit bad = new Bandit("Chuck", Ability.BAD);
+        Bandit ugly = new Bandit("Bradley", Ability.UGLY);
+        Bandit brain = new Bandit("Willy", Ability.BRAIN);
         List<Bandit> bandits = new ArrayList<>(Arrays.asList(boss, lady, bad, ugly, brain));
         return new Gang("Red Damnation", bandits, 50, false, this);
     }
 
     private Gang createLosLibertadoresGang(){
-        Bandit boss = new Bandit("Boss", Ability.BOSS);
-        Bandit lady = new Bandit("Lady", Ability.LADY);
-        Bandit bad = new Bandit("Bad", Ability.BAD);
-        Bandit ugly = new Bandit("Ugly", Ability.UGLY);
-        Bandit brain = new Bandit("Brain", Ability.BRAIN);
+        Bandit boss = new Bandit("G. Antonio", Ability.BOSS);
+        Bandit lady = new Bandit("Ana-Maria", Ability.LADY);
+        Bandit bad = new Bandit("Diego", Ability.BAD);
+        Bandit ugly = new Bandit("Jose", Ability.UGLY);
+        Bandit brain = new Bandit("Pedro", Ability.BRAIN);
         List<Bandit> bandits = new ArrayList<>(Arrays.asList(boss, lady, bad, ugly, brain));
         return new Gang("Los Libertadores", bandits, 50, false, this);
     }
 
     private Gang createOlesonGang(){
-        Bandit boss = new Bandit("Boss", Ability.BOSS);
-        Bandit lady = new Bandit("Lady", Ability.LADY);
-        Bandit bad = new Bandit("Bad", Ability.BAD);
-        Bandit ugly = new Bandit("Ugly", Ability.UGLY);
-        Bandit brain = new Bandit("Brain", Ability.BRAIN);
+        Bandit boss = new Bandit("Nellie", Ability.BOSS);
+        Bandit lady = new Bandit("Mattie", Ability.LADY);
+        Bandit bad = new Bandit("Billy Boy", Ability.BAD);
+        Bandit ugly = new Bandit("Big Joe", Ability.UGLY);
+        Bandit brain = new Bandit("Uncle Pat", Ability.BRAIN);
         List<Bandit> bandits = new ArrayList<>(Arrays.asList(boss, lady, bad, ugly, brain));
         return new Gang("Oleson", bandits, 50, false, this);
     }
@@ -294,6 +308,7 @@ public class Game implements Serializable {
         unlockAllDices();
         presenter.updateUI();
         aiHandleActions();
+        aiActions = "";
         switchPlayer();
 
     }
@@ -316,18 +331,25 @@ public class Game implements Serializable {
 
     private void aiHandleActions(){
         int nbActions = getNumberOfAction();
-        if (nbActions == 0) return;
+        if (nbActions == 0){
+            aiActions = "";
+            presenter.displayAiActions(aiActions);
+            return;
+        }
         Gang currentGang = gangs.get(1);
         List<Bandit> activeBandits = currentGang.getActiveBandit(dices);
         while (nbActions > 0){
             if (activeBandits.size() == 1){
                 playCharacter(activeBandits.get(0).getAbility());
+                aiActions += activeBandits.get(0).getAbility().toString() + " ";
             } else {
                 Bandit bestOption = currentGang.getBestOptionsAI(activeBandits, gangs.get(0));
+                aiActions += bestOption.getAbility().toString() + " ";
                 playCharacter(bestOption.getAbility());
             }
             nbActions--;
         }
+        presenter.displayAiActions(aiActions);
     }
 
     private boolean handleActions(String action, Ability ability, Gang currentGang) {
@@ -415,6 +437,7 @@ public class Game implements Serializable {
     private void setGameState(GameState newState){
         gameState = newState;
         if (gameState.equals(GameState.CHANGE_PLAYER)){
+            presenter.resetHighlight();
             boolean isWon = isWon();
             if (isWon){
                 presenter.displayWin(getCurrentGangName());
