@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void retrieveSavedGame() {
         Gson gson = new Gson();
-        SharedPreferences sp = getPreferences(MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Desperados", MODE_PRIVATE);
         String json = sp.getString("previous_game", "");
         if (!json.equals("")){
             game = gson.fromJson(json, Game.class);
@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             init();
         }
+    }
+
+    private void backUp(){
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Desperados", MODE_PRIVATE);
+        SharedPreferences.Editor spEditor = sp.edit();
+        game.setPresenter(null);
+        spEditor.putString("previous_game", "");
+        spEditor.commit();
     }
 
     private void displayDialogBox() {
@@ -63,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.cancel();
+                backUp();
                 init();
             }
         });
@@ -71,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUI() {
         TextView yourGangName = findViewById(R.id.your_gang);
-        yourGangName.setText(game.getOwnGangName());
+        yourGangName.setText(game.getOwnGangName().toUpperCase());
         TextView computerGangName = findViewById(R.id.computer_gang);
-        computerGangName.setText(game.getComputerGangName());
+        computerGangName.setText(game.getComputerGangName().toUpperCase());
         LinearLayout topLinearLayout = findViewById(R.id.top_bg);
         LinearLayout bottomLinearLayout = findViewById(R.id.bottom_bg);
         setBg(topLinearLayout, game.getOwnGangName());

@@ -17,8 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import be.adrisuys.desperados.Presenter;
 import be.adrisuys.desperados.R;
+import be.adrisuys.desperados.models.Ability;
 import be.adrisuys.desperados.models.Game;
 
 public class GameActivity extends AppCompatActivity implements GameViewInterface {
@@ -27,18 +30,13 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     private Presenter presenter;
     //UI
     private Button bankUI, gangAmoney, gangBmoney;
-    private ImageView dice1UI;
-    private ImageView dice2UI;
-    private ImageView dice3UI;
-    private ImageView dice4UI;
-
+    private ImageView dice1UI, dice2UI, dice3UI, dice4UI;
     private ImageView brainAimg, uglyAimg, badAimg, ladyAimg, bossAimg;
     private ImageView brainBimg, uglyBimg, badBimg, ladyBimg, bossBimg;
     private TextView brainAName, uglyAName, badAName, ladyAName, bossAName;
     private TextView brainBName, uglyBName, badBName, ladyBName, bossBName;
-    private TextView aiActions;
-
     private LinearLayout highligthBoss, highligthLady, highligthBad, highligthUgly, highligthBrain;
+    private ImageView aiActionOne, aiActionTwo, aiActionThree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,6 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
         game = (Game) getIntent().getSerializableExtra("game");
         presenter = new Presenter(this, game);
         setUI();
-        aiActions = findViewById(R.id.ai_actions);
     }
 
     public void onClickDice(View v){
@@ -125,15 +122,49 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     }
 
     @Override
-    public void displayAiActions(String aiActions) {
-        this.aiActions.setText("AI Actions: " + aiActions);
-    }
-
-    @Override
     public void resetHighlight(){
         LinearLayout[] layouts = new LinearLayout[]{highligthBoss, highligthLady, highligthBad, highligthUgly, highligthBrain};
         for (LinearLayout ll: layouts){
             ll.setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
+    public void displayAiActions(List<Ability> aiChoice) {
+        if (aiChoice.size() == 4){
+            return;
+        }
+        ImageView[] imgs = new ImageView[]{aiActionOne, aiActionTwo, aiActionThree};
+        for (int i = 0; i < aiChoice.size(); i++){
+            switch (aiChoice.get(i)){
+                case BRAIN:
+                    imgs[i].setBackgroundResource(R.drawable.ai_action_brain);
+                    break;
+                case UGLY:
+                    imgs[i].setBackgroundResource(R.drawable.ai_action_ugly);
+                    break;
+                case BAD:
+                    imgs[i].setBackgroundResource(R.drawable.ai_action_bad);
+                    break;
+                case LADY:
+                    imgs[i].setBackgroundResource(R.drawable.ai_action_lady);
+                    break;
+                case BOSS:
+                    imgs[i].setBackgroundResource(R.drawable.ai_action_boss);
+                    break;
+            }
+        }
+        for (int i = aiChoice.size(); i < 3; i++){
+            imgs[i].setBackgroundResource(0);
+        }
+    }
+
+    @Override
+    public void highlightInJail(int[] indexes) {
+        System.out.println("view.highlightjail");
+        LinearLayout[] layouts = new LinearLayout[]{highligthBoss, highligthLady, highligthBad, highligthUgly, highligthBrain};
+        for (int i: indexes){
+            layouts[i].setBackgroundColor(getResources().getColor(R.color.fluo_purple));
         }
     }
 
@@ -157,6 +188,10 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
         dice2UI = findViewById(R.id.dice2);
         dice3UI = findViewById(R.id.dice3);
         dice4UI = findViewById(R.id.dice4);
+
+        aiActionOne = findViewById(R.id.ai_action_one);
+        aiActionTwo = findViewById(R.id.ai_action_two);
+        aiActionThree = findViewById(R.id.ai_action_three);
 
         highligthBoss = findViewById(R.id.highlight_boss);
         highligthLady = findViewById(R.id.highlight_lady);
@@ -295,9 +330,10 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
     }
 
     private void backUp(){
-        SharedPreferences sp = getPreferences(MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Desperados", MODE_PRIVATE);
         SharedPreferences.Editor spEditor = sp.edit();
         Gson gson = new Gson();
+        game.setPresenter(null);
         String json = gson.toJson(game);
         spEditor.putString("previous_game", json);
         spEditor.commit();

@@ -6,7 +6,6 @@ public class Bandit implements Serializable {
 
     private String name;
     private Ability ability;
-    private Gang gang;
     private int timeInJail;
 
     public Bandit(String name, Ability ability) {
@@ -19,21 +18,13 @@ public class Bandit implements Serializable {
         return ability;
     }
 
-    public void setGang(Gang gang) {
-        this.gang = gang;
-    }
-
     public boolean isFreed() {
         return timeInJail <= 0;
     }
 
     public String acts(int power){
         if (isFreed()) {
-            if (ability.getValue() == 2){
-                return getBrainPower(power);
-            } else {
-                return ability.toString();
-            }
+            return ability.toString();
         } else {
             if (timeInJail < power){
                 int remainingPower = power - timeInJail;
@@ -48,10 +39,6 @@ public class Bandit implements Serializable {
                 }
             }
         }
-    }
-
-    private String getBrainPower(int power) {
-        return gang.getName();
     }
 
     public void setFree() {

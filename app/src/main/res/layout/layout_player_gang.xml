@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/brown_material"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bossA_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/western"
+                android:text="NAME"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:id="@+id/highlight_boss"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/fluo">
+
+                <ImageView
+                    android:id="@+id/boss_A_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="onClickCharacter"
+                    android:tag="BOSS" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ladyA_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/western"
+                android:text="NAME"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:id="@+id/highlight_lady"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/fluo">
+
+                <ImageView
+                    android:id="@+id/lady_A_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="onClickCharacter"
+                    android:tag="LADY" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/badA_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/western"
+                android:text="NAME"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:id="@+id/highlight_bad"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/fluo">
+
+                <ImageView
+                    android:id="@+id/bad_A_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="onClickCharacter"
+                    android:tag="BAD" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/brown_material"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/uglyA_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/western"
+                android:text="NAME"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:id="@+id/highlight_ugly"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/fluo">
+
+                <ImageView
+                    android:id="@+id/ugly_A_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="onClickCharacter"
+                    android:tag="UGLY" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/brainA_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/western"
+                android:text="NAME"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:id="@+id/highlight_brain"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/fluo">
+
+                <ImageView
+                    android:id="@+id/brain_A_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="onClickCharacter"
+                    android:tag="BRAIN" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/gangAmoney"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/money_chips_red"
+            android:fontFamily="@font/western"
+            android:text="0$"
+            android:textColor="#fff"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+</merge>

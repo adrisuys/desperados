@@ -1,6 +1,5 @@
 package be.adrisuys.desperados.models;
 
-import android.content.Intent;
 import android.os.Handler;
 
 import java.io.Serializable;
@@ -25,7 +24,8 @@ public class Game implements Serializable {
     private int nbActionsForRound;
     private int rollCount;
     private GameState gameState;
-    private String aiActions;
+    private List<Ability> actionsPlayedByAI;
+    private boolean hasYetToRollDice;
 
     public Game(){
         dice_faces = new String[]{"*", "2", "3", "4", "5", "6"};
@@ -42,7 +42,8 @@ public class Game implements Serializable {
         nbActionsForRound = 0;
         rollCount = 1;
         gameState = GameState.DICE_ROLL;
-        aiActions = "";
+        actionsPlayedByAI = new ArrayList<>();
+        hasYetToRollDice = true;
     }
 
     public void setPresenter(Presenter presenter) {
@@ -76,6 +77,10 @@ public class Game implements Serializable {
     }
 
     public void lockDice(int index){
+        if (hasYetToRollDice){
+            // not possible to lock the dice of the previous player
+            return;
+        }
         Dice dice = dices.get(index);
         if (dice.isLocked()){
             dice.unlock();
@@ -122,7 +127,6 @@ public class Game implements Serializable {
                 presenter.updateUI();
                 rollCount++;
                 if (rollCount > 3){
-                    showHighlight();
                     setGameState(GameState.CHOOSE_ACTION);
                 }
             }
@@ -136,11 +140,13 @@ public class Game implements Serializable {
     }
 
     public void playAction(String characterAbility){
+        System.out.println(gameState);
         if (gameState.equals(GameState.OLESON_MODE)){
             boolean isOK = makeUnclePatAction(characterAbility);
             if (isOK){
                 presenter.updateUI();
                 if (nbActionsForRound > 0){
+                    presenter.resetHighlight();
                     setGameState(GameState.CHOOSE_ACTION);
                 } else {
                     setGameState(GameState.CHANGE_PLAYER);
@@ -159,7 +165,9 @@ public class Game implements Serializable {
                     } else {
                         presenter.displayMessage("The computer is done with its actions");
                     }
-                    setGameState(GameState.CHANGE_PLAYER);
+                    if (gameState != GameState.OLESON_MODE){
+                        setGameState(GameState.CHANGE_PLAYER);
+                    }
                 }
             } else {
                 presenter.displayMessage("You cannot do any actions");
@@ -171,13 +179,27 @@ public class Game implements Serializable {
     // private methods
 
     private void showHighlight() {
-        List<Bandit> actives = gangs.get(currentGangIndex).getActiveBandit(dices);
-        int[] indexes = new int[actives.size()];
-        for (int i = 0; i < actives.size(); i++){
-            int index = Math.abs(actives.get(i).getAbility().getValue() - 6);
-            indexes[i] = index;
+        if (getNumberOfAction() > 0){
+            List<Bandit> actives = gangs.get(currentGangIndex).getActiveBandit(dices);
+            int[] indexes = new int[actives.size()];
+            for (int i = 0; i < actives.size(); i++){
+                int index = Math.abs(actives.get(i).getAbility().getValue() - 6);
+                indexes[i] = index;
+            }
+            presenter.highlight(indexes);
         }
-        presenter.highlight(indexes);
+    }
+
+    private void highlightBanditsInJail(){
+        List<Bandit> inJail = gangs.get(currentGangIndex).getBanditsInJail();
+        if (inJail.size() > 0){
+            int[] indexes = new int[inJail.size()];
+            for (int i = 0; i < inJail.size(); i++){
+                int index = Math.abs(inJail.get(i).getAbility().getValue() - 6);
+                indexes[i] = index;
+            }
+            presenter.highlightInJail(indexes);
+        }
     }
 
     private String getCurrentGangName(){
@@ -273,7 +295,6 @@ public class Game implements Serializable {
 
     private boolean playCharacter(Ability ability) {
         if (!Arrays.asList(diceValues()).contains(String.valueOf(ability.getValue()))){
-            System.out.println("not containing");
             return false;
         }
         Gang currentGang = gangs.get(currentGangIndex);
@@ -291,6 +312,7 @@ public class Game implements Serializable {
             String face = dice_faces[random - 1];
             dice.setValue(face);
         }
+        hasYetToRollDice = false;
     }
 
     private Gang getRicherGang() {
@@ -308,7 +330,7 @@ public class Game implements Serializable {
         unlockAllDices();
         presenter.updateUI();
         aiHandleActions();
-        aiActions = "";
+        actionsPlayedByAI.clear();
         switchPlayer();
 
     }
@@ -332,8 +354,8 @@ public class Game implements Serializable {
     private void aiHandleActions(){
         int nbActions = getNumberOfAction();
         if (nbActions == 0){
-            aiActions = "";
-            presenter.displayAiActions(aiActions);
+            actionsPlayedByAI.clear();
+            presenter.displayAiActions(actionsPlayedByAI);
             return;
         }
         Gang currentGang = gangs.get(1);
@@ -341,15 +363,15 @@ public class Game implements Serializable {
         while (nbActions > 0){
             if (activeBandits.size() == 1){
                 playCharacter(activeBandits.get(0).getAbility());
-                aiActions += activeBandits.get(0).getAbility().toString() + " ";
+                actionsPlayedByAI.add(activeBandits.get(0).getAbility());
             } else {
                 Bandit bestOption = currentGang.getBestOptionsAI(activeBandits, gangs.get(0));
-                aiActions += bestOption.getAbility().toString() + " ";
+                actionsPlayedByAI.add(bestOption.getAbility());
                 playCharacter(bestOption.getAbility());
             }
             nbActions--;
         }
-        presenter.displayAiActions(aiActions);
+        presenter.displayAiActions(actionsPlayedByAI);
     }
 
     private boolean handleActions(String action, Ability ability, Gang currentGang) {
@@ -448,6 +470,7 @@ public class Game implements Serializable {
                 setGameState(GameState.DICE_ROLL);
             }
         } else if (gameState.equals(GameState.CHOOSE_ACTION)){
+            showHighlight();
             rollCount = 1;
             unlockAllDices();
             presenter.updateUI();
@@ -465,6 +488,9 @@ public class Game implements Serializable {
             }
         } else if (gameState.equals(GameState.OLESON_MODE)){
             presenter.displayMessage("Pick a bandit that will be affected by Uncle Pat");
+            highlightBanditsInJail();
+        } else if (gameState.equals(GameState.DICE_ROLL)){
+            hasYetToRollDice = true;
         }
     }
 }

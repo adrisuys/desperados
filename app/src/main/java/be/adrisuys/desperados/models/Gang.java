@@ -1,7 +1,5 @@
 package be.adrisuys.desperados.models;
 
-import android.content.Intent;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,27 +10,21 @@ public class Gang implements Serializable {
     private List<Bandit> bandits;
     private int money;
     private boolean isComputer;
-    private Game game;
 
     public Gang(String name, List<Bandit> bandits, int money, boolean isComputer, Game game){
         this.name = name;
         this.bandits = bandits;
-        makeBanditsBelong();
         this.money = money;
         this.isComputer = isComputer;
-        this.game = game;
-    }
-
-    private void makeBanditsBelong() {
-        for (Bandit bandit: bandits){
-            bandit.setGang(this);
-        }
     }
 
     public String makeBanditsAct(Ability ability, int power){
         for (Bandit bandit: bandits){
             if (bandit.getAbility().equals(ability)){
                 String action = bandit.acts(power);
+                if (action.equals(Ability.BRAIN.toString())){
+                    action = name;
+                }
                 return action;
             }
         }
@@ -157,5 +149,15 @@ public class Gang implements Serializable {
             }
         }
         return bandits.get(bandits.size() - 1);
+    }
+
+    public List<Bandit> getBanditsInJail(){
+        List<Bandit> bandits = new ArrayList<>();
+        for (Bandit b: this.bandits){
+            if (!b.isFreed()){
+                bandits.add(b);
+            }
+        }
+        return bandits;
     }
 }

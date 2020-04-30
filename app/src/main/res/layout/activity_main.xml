@@ -12,18 +12,7 @@
         android:layout_height="200dp"
         android:background="@drawable/bg"
         android:layout_marginBottom="50dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:text="DESPERADOS OF DICE TOWN "
-            android:fontFamily="@font/western"/>
-
-    </LinearLayout>
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"

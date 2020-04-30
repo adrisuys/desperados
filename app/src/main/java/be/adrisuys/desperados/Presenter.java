@@ -1,6 +1,10 @@
 package be.adrisuys.desperados;
 
 
+import java.io.Serializable;
+import java.util.List;
+
+import be.adrisuys.desperados.models.Ability;
 import be.adrisuys.desperados.models.Bandit;
 import be.adrisuys.desperados.models.Game;
 import be.adrisuys.desperados.view.GameViewInterface;
@@ -84,15 +88,20 @@ public class Presenter {
         view.displayWin(currentGangName);
     }
 
-    public void displayAiActions(String aiActions) {
-        view.displayAiActions(aiActions);
-    }
-
     public void highlight(int[] indexes) {
         view.highlight(indexes);
     }
 
     public void resetHighlight() {
         view.resetHighlight();
+    }
+
+    public void displayAiActions(List<Ability> aiChoices) {
+        view.displayAiActions(aiChoices);
+    }
+
+    public void highlightInJail(int[] indexes) {
+        System.out.println("presenter.highlightInJail");
+        view.highlightInJail(indexes);
     }
 }
