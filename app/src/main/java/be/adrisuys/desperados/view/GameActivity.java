@@ -275,39 +275,39 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
 
     private void setNames(){
         bossAName = findViewById(R.id.bossA_name);
-        bossAName.setText(presenter.getBandit(0, 0).getName());
+        bossAName.setText(presenter.getBanditName(0, 0));
         ladyAName = findViewById(R.id.ladyA_name);
-        ladyAName.setText(presenter.getBandit(0, 1).getName());
+        ladyAName.setText(presenter.getBanditName(0, 1));
         badAName = findViewById(R.id.badA_name);
-        badAName.setText(presenter.getBandit(0, 2).getName());
+        badAName.setText(presenter.getBanditName(0, 2));
         uglyAName = findViewById(R.id.uglyA_name);
-        uglyAName.setText(presenter.getBandit(0, 3).getName());
+        uglyAName.setText(presenter.getBanditName(0, 3));
         brainAName = findViewById(R.id.brainA_name);
-        brainAName.setText(presenter.getBandit(0, 4).getName());
+        brainAName.setText(presenter.getBanditName(0, 4));
 
         bossBName = findViewById(R.id.bossB_name);
-        bossBName.setText(presenter.getBandit(1, 0).getName());
+        bossBName.setText(presenter.getBanditName(1, 0));
         ladyBName = findViewById(R.id.ladyB_name);
-        ladyBName.setText(presenter.getBandit(1, 1).getName());
+        ladyBName.setText(presenter.getBanditName(1, 1));
         badBName = findViewById(R.id.badB_name);
-        badBName.setText(presenter.getBandit(1, 2).getName());
+        badBName.setText(presenter.getBanditName(1, 2));
         uglyBName = findViewById(R.id.uglyB_name);
-        uglyBName.setText(presenter.getBandit(1, 3).getName());
+        uglyBName.setText(presenter.getBanditName(1, 3));
         brainBName = findViewById(R.id.brainB_name);
-        brainBName.setText(presenter.getBandit(1, 4).getName());
+        brainBName.setText(presenter.getBanditName(1, 4));
     }
 
     private void updateJailtime() {
-        updateJailBars(presenter.getBandit(0, 0).getTimeInJail(), bossAimg);
-        updateJailBars(presenter.getBandit(0, 1).getTimeInJail(), ladyAimg);
-        updateJailBars(presenter.getBandit(0, 2).getTimeInJail(), badAimg);
-        updateJailBars(presenter.getBandit(0, 3).getTimeInJail(), uglyAimg);
-        updateJailBars(presenter.getBandit(0, 4).getTimeInJail(), brainAimg);
-        updateJailBars(presenter.getBandit(1, 0).getTimeInJail(), bossBimg);
-        updateJailBars(presenter.getBandit(1, 1).getTimeInJail(), ladyBimg);
-        updateJailBars(presenter.getBandit(1, 2).getTimeInJail(), badBimg);
-        updateJailBars(presenter.getBandit(1, 3).getTimeInJail(), uglyBimg);
-        updateJailBars(presenter.getBandit(1, 4).getTimeInJail(), brainBimg);
+        updateJailBars(presenter.getBanditJailTime(0, 0), bossAimg);
+        updateJailBars(presenter.getBanditJailTime(0, 1), ladyAimg);
+        updateJailBars(presenter.getBanditJailTime(0, 2), badAimg);
+        updateJailBars(presenter.getBanditJailTime(0, 3), uglyAimg);
+        updateJailBars(presenter.getBanditJailTime(0, 4), brainAimg);
+        updateJailBars(presenter.getBanditJailTime(1, 0), bossBimg);
+        updateJailBars(presenter.getBanditJailTime(1, 1), ladyBimg);
+        updateJailBars(presenter.getBanditJailTime(1, 2), badBimg);
+        updateJailBars(presenter.getBanditJailTime(1, 3), uglyBimg);
+        updateJailBars(presenter.getBanditJailTime(1, 4), brainBimg);
     }
 
     private void updateJailBars(String jailTime, ImageView iv){

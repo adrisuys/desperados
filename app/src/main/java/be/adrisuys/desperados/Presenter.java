@@ -1,11 +1,9 @@
 package be.adrisuys.desperados;
 
 
-import java.io.Serializable;
 import java.util.List;
 
 import be.adrisuys.desperados.models.Ability;
-import be.adrisuys.desperados.models.Bandit;
 import be.adrisuys.desperados.models.Game;
 import be.adrisuys.desperados.view.GameViewInterface;
 
@@ -64,8 +62,12 @@ public class Presenter {
         game.playAction(characterAbility);
     }
 
-    public Bandit getBandit(int gangIndex, int banditIndex){
-        return game.getBandit(gangIndex, banditIndex);
+    public String getBanditName(int gangIndex, int banditIndex){
+        return game.getBandit(gangIndex, banditIndex).getName();
+    }
+
+    public String getBanditJailTime(int gangIndex, int banditIndex){
+        return game.getBandit(gangIndex, banditIndex).getTimeInJail();
     }
 
     public void updateMoneyCount() {
