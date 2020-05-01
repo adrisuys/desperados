@@ -380,7 +380,7 @@ public class Game implements Serializable {
             case "NONE": case "FREE":
                 presenter.updateUI();
                 break;
-            case "Los libertadores":
+            case "Los Libertadores":
                 robTheBank(currentGang);
                 presenter.updateMoneyCount();
                 break;
@@ -413,6 +413,10 @@ public class Game implements Serializable {
     }
 
     private void takeMoneyFromBank(int i, Gang currentGang) {
+        if (bank == 0){
+            presenter.displayMessage("The bank vault was empty...");
+            return;
+        }
         if (bank >= i){
             currentGang.robBank(i);
             bank -= i;
