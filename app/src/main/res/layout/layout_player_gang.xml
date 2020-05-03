@@ -9,8 +9,8 @@
         android:padding="10dp">
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -41,11 +41,16 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/dice_face_boss"/>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -76,11 +81,16 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/dice_face_lady"/>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -110,6 +120,11 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/dice_face_bad"/>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -122,8 +137,8 @@
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -154,11 +169,16 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/dice_face_ugly"/>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -188,6 +208,11 @@
                     android:tag="BRAIN" />
 
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/dice_face_brain"/>
 
         </LinearLayout>
 

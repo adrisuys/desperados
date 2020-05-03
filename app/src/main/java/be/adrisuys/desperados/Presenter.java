@@ -78,6 +78,10 @@ public class Presenter {
         view.updateUI();
     }
 
+    public String getGangMoney(int i) {
+        return game.getGangMoney(i);
+    }
+
     public String getGangName(int i) {
         return game.getGangName(i);
     }

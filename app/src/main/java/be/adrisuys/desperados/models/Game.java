@@ -66,6 +66,11 @@ public class Game implements Serializable {
         this.gangs = gangs;
     }
 
+    public void refreshGangs(){
+        setGangs();
+        pickPlayingGangs();
+    }
+
     public void pickPlayingGangs(){
         Collections.shuffle(gangs);
         gangs.remove(2);
@@ -474,21 +479,26 @@ public class Game implements Serializable {
                 setGameState(GameState.DICE_ROLL);
             }
         } else if (gameState.equals(GameState.CHOOSE_ACTION)){
-            showHighlight();
-            rollCount = 1;
-            unlockAllDices();
-            presenter.updateUI();
-            nbActionsForRound = getNumberOfAction();
-            if (nbActionsForRound == 0 || nbActionsForRound == 4){
-                presenter.displayMessage("You cannot do any actions... Next player");
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setGameState(GameState.CHANGE_PLAYER);
-                    }
-                }, 2000);
+            boolean isWon = isWon();
+            if (isWon){
+                presenter.displayWin(getCurrentGangName());
             } else {
-                presenter.displayMessage("You can do " + nbActionsForRound + " actions");
+                showHighlight();
+                rollCount = 1;
+                unlockAllDices();
+                presenter.updateUI();
+                nbActionsForRound = getNumberOfAction();
+                if (nbActionsForRound == 0 || nbActionsForRound == 4){
+                    presenter.displayMessage("You cannot do any actions... Next player");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setGameState(GameState.CHANGE_PLAYER);
+                        }
+                    }, 2000);
+                } else {
+                    presenter.displayMessage("You can do " + nbActionsForRound + " actions");
+                }
             }
         } else if (gameState.equals(GameState.OLESON_MODE)){
             presenter.displayMessage("Pick a bandit that will be affected by Uncle Pat");

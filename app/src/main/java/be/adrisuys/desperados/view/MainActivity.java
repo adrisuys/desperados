@@ -18,6 +18,10 @@ import be.adrisuys.desperados.models.Game;
 public class MainActivity extends AppCompatActivity {
 
     private Game game;
+    private TextView computerGangName;
+    private TextView yourGangName;
+    private LinearLayout topLinearLayout;
+    private LinearLayout bottomLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +82,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUI() {
-        TextView yourGangName = findViewById(R.id.your_gang);
+        yourGangName = findViewById(R.id.your_gang);
+        computerGangName = findViewById(R.id.computer_gang);
+        topLinearLayout = findViewById(R.id.top_bg);
+        bottomLinearLayout = findViewById(R.id.bottom_bg);
+        displayUI();
+    }
+
+    private void displayUI(){
         yourGangName.setText(game.getOwnGangName().toUpperCase());
-        TextView computerGangName = findViewById(R.id.computer_gang);
         computerGangName.setText(game.getComputerGangName().toUpperCase());
-        LinearLayout topLinearLayout = findViewById(R.id.top_bg);
-        LinearLayout bottomLinearLayout = findViewById(R.id.bottom_bg);
         setBg(topLinearLayout, game.getOwnGangName());
         setBg(bottomLinearLayout, game.getComputerGangName());
     }
@@ -104,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onPlayClicked(View v){
         play();
+    }
+
+    public void onRefresh(View v){
+        game.refreshGangs();
+        displayUI();
     }
 
     public void play(){

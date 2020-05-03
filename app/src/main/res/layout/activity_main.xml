@@ -88,6 +88,13 @@
             android:textColor="#5B2B18"
             style="?android:attr/borderlessButtonStyle"/>
 
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/main_refresh"
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="onRefresh"/>
+
     </LinearLayout>
 
 

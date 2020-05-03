@@ -179,9 +179,9 @@ public class GameActivity extends AppCompatActivity implements GameViewInterface
         bankUI = findViewById(R.id.bank);
         bankUI.setText(presenter.getBankAmount());
         gangAmoney = findViewById(R.id.gangAmoney);
-        gangAmoney.setText("50 $");
+        gangAmoney.setText(presenter.getGangMoney(0));
         gangBmoney = findViewById(R.id.gangBmoney);
-        gangBmoney.setText("50 $");
+        gangBmoney.setText(presenter.getGangMoney(1));
 
         dice1UI = findViewById(R.id.dice1);
         dice2UI = findViewById(R.id.dice2);
